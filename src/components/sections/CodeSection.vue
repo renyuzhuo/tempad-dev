@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import { shallowRef, watchEffect } from 'vue'
-import { selection, selectedNode, options, selectedTemPadComponent } from '@/entrypoints/ui/state'
-import { serializeCSS } from '@/entrypoints/ui/utils'
+import { computed, shallowRef, watchEffect } from 'vue'
+import { options, selectedNode, selectedTemPadComponent, selection } from '@/entrypoints/ui/state'
+import { serializeAndroid, serializeCSS, serializeJava } from '@/entrypoints/ui/utils'
 import Section from '../Section.vue'
 import Code from '../Code.vue'
 import IconButton from '../IconButton.vue'
 import Preview from '../icons/Preview.vue'
-import { computed } from 'vue'
 import Info from '../icons/Info.vue'
 
 const componentCode = shallowRef('')
 const componentLink = shallowRef('')
 const css = shallowRef('')
-const js = shallowRef('')
+const java = shallowRef('')
+const android = shallowRef('')
 const warning = shallowRef('')
 
 const playButtonTitle = computed(() =>
@@ -41,7 +41,9 @@ watchEffect(async () => {
 
   const style = await node.getCSSAsync()
   css.value = serializeCSS(style, serializeOptions)
-  js.value = serializeCSS(style, { toJS: true, ...serializeOptions })
+  // java.value = serializeCSS(style, { toJS: true, ...serializeOptions })
+  android.value = serializeAndroid(style, serializeOptions)
+  java.value = serializeJava(style, serializeOptions)
 
   if ('warning' in node) {
     warning.value = node.warning
@@ -58,7 +60,7 @@ function open() {
 <template>
   <Section title="Code" :collapsed="!selectedNode || !(componentCode || css)">
     <template #header>
-      Code
+      Code2
       <IconButton
         v-if="warning"
         variant="secondary"
@@ -88,7 +90,8 @@ function open() {
       </template>
     </Code>
     <Code v-if="css" class="tp-code-code" title="CSS" lang="css" :code="css" />
-    <Code v-if="css" class="tp-code-code" title="JavaScript" lang="js" :code="js" />
+    <Code v-if="css" class="tp-code-code" title="Android" lang="css" :code="android" />
+    <Code v-if="css" class="tp-code-code" title="Java" lang="css" :code="java" />
   </Section>
 </template>
 

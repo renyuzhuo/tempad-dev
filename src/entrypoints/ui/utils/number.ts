@@ -20,3 +20,13 @@ export function toDecimalPlace(value: string | number, decimalPlaces: number = 3
 
   return Number(val.toFixed(decimalPlaces))
 }
+
+export function toDecimalPlace2(value: string | number, decimalPlaces: number = 3): number {
+  let val = typeof value === 'string' ? parseNumber(value) : value
+
+  if (val == null) {
+    return 0
+  }
+
+  return Math.round(Number(val.toFixed(decimalPlaces)))
+}
