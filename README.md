@@ -1,5 +1,8 @@
 # TemPad Dev
 
+wxt zip
+/Users/renyuzhuo/Chrome/tempad-dev
+
 Inspect panel on Figma, for everyone.
 
 Built with [WXT](https://wxt.dev/), TypeScript and Vue 3.
