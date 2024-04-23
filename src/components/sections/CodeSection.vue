@@ -91,7 +91,7 @@ function open() {
     </Code>
     <Code v-if="css" class="tp-code-code" title="CSS" lang="css" :code="css" />
     <Code v-if="css" class="tp-code-code" title="Android" lang="css" :code="android" />
-    <Code v-if="css" class="tp-code-code" title="Java" lang="css" :code="java" />
+    <Code v-if="css" class="tp-code-code" title="Kotlin" lang="css" :code="java" />
   </Section>
 </template>
 
